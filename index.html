@@ -1,0 +1,12 @@
+<html>
+<header>
+</header>
+<body>
+<div id="content"></div>
+</body>
+<script>
+fetch('https://raw.githubusercontent.com/protodonuts/udev-index/master/issue_template.md')
+.then(i => i.text())
+.then(t => document.getElementById('content').innerText = t);
+</script>
+</html>
