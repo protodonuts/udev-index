@@ -47,6 +47,13 @@
 #new_name,#new_url {
     width: 45%;
 }
+.output {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+.output h3 {
+    cursor: pointer;
+}
 </style>
 </header>
 
@@ -95,10 +102,12 @@
             </tr>
         </tbody>
     </table>
-    <hr>
-    <p v-for="asset in new_assets">{{asset}}</p>
-    <hr>
-    <pre>{{bbcode}}</pre>
+    <div class="output">
+        <hr>
+        <code-output :title="'json to add'" :content="new_assets"></code-output>
+        <hr>
+        <code-output :title="'bbcode'" :content="bbcode"></code-output>
+    </div>
 </div>
 </body>
 <script src="https://unpkg.com/vue@2.4.2"></script>
@@ -124,6 +133,16 @@ Vue.component('new-asset-form', {
     props: ['new_asset']
 });
 
+Vue.component('code-output', {
+    template: '<div><h3 @click="toggle">{{title}}</h3><pre v-if="display">{{content}}</pre></div>',
+    props: ['title', 'content', ],
+    data: function() {
+        return {display: false};
+    },
+    methods: {
+        toggle: function() {this.display = !this.display;},
+    }
+})
 
 function getUniqueArray(array) {
     var set = new Set();
