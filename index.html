@@ -16,14 +16,14 @@
 
 <script type="text/x-template" id="new-asset-form-template">
     <div><div class="form-group name-td">
-            <input v-model="new_asset.name" class="form-control" id="new_name" placeholder="name">
-            <input v-model="new_asset.url" class="form-control" id="new_url" type="url" placeholder="url">
+            <input v-model.trim="new_asset.name" class="form-control" id="new_name" placeholder="name">
+            <input v-model.trim="new_asset.url" class="form-control" id="new_url" type="url" placeholder="url">
         </div><div class="form-group desc-td">
-            <input v-model="new_asset.desc" class="form-control" id="new_desc" placeholder="desc">
+            <input v-model.trim="new_asset.desc" class="form-control" id="new_desc" placeholder="desc">
         </div><div class="form-group author-td">
-            <input v-model="new_asset.author" class="form-control" id="new_author" placeholder="author">
+            <input v-model.trim="new_asset.author" class="form-control" id="new_author" placeholder="author">
         </div><div class="form-group category-td">
-            <input v-model="new_asset.category" class="form-control" id="new_category" placeholder="category">
+            <input v-model.trim="new_asset.category" class="form-control" id="new_category" placeholder="category">
         </div>
     </div>
 </script>
@@ -104,9 +104,9 @@
     </table>
     <div class="output">
         <hr>
-        <code-output :title="'json to add'" :content="new_assets"></code-output>
+        <code-output :title="'JSON'" :content="new_assets"></code-output>
         <hr>
-        <code-output :title="'bbcode'" :content="bbcode"></code-output>
+        <code-output :title="'BBCode'" :content="bbcode"></code-output>
     </div>
 </div>
 </body>
@@ -198,6 +198,11 @@ var app = new Vue({
             for (var asset of this.all_assets) {
                 map[asset.category].push(asset);
             }
+            for (var c of this.categorys) {
+                map[c].sort(function(a, b) {
+                    return a.author.localeCompare(b.author);
+                })
+            }
             return map;
         },
         bbcode: function() {
@@ -225,11 +230,12 @@ var app = new Vue({
                 return;
             }
             this.new_assets.push(this.new_asset);
+            var last_author = this.new_asset.author;
             this.new_asset = new Asset({
                 name: '',
                 url: '',
                 desc: '',
-                author: '',
+                author: last_author,
                 category: '',
             });
         },
