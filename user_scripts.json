@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Show Bangumi ID",
+    "url": "https://greasyfork.org/zh-CN/scripts/1920-show-bangumi-id",
+    "desc": "在昵称旁显示用户名",
+    "author": "阿叉",
+    "category": "用户社交"
+  },
+  {
+    "name": "bgmnote",
+    "url": "https://greasyfork.org/zh-CN/scripts/4428-bgmnote",
+    "desc": "简易备注",
+    "author": "阿叉",
+    "category": "用户社交"
+  },
+  {
+    "name": "Silent B",
+    "url": "https://greasyfork.org/zh-CN/scripts/10559-silent-b",
+    "desc": "隐藏指定的超展开列表项目，等等",
+    "author": "阿叉",
+    "category": "超展开"
+  },
+  {
+    "name": "BNM",
+    "url": "https://greasyfork.org/zh-CN/scripts/1928-bnm",
+    "desc": "屏蔽用户",
+    "author": "阿叉",
+    "category": "用户社交"
+  }
+]

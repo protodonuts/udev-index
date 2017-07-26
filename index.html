@@ -19,7 +19,7 @@
             <input v-model.trim="new_asset.name" class="form-control" id="new_name" placeholder="name">
             <input v-model.trim="new_asset.url" class="form-control" id="new_url" type="url" placeholder="url">
         </div><div class="form-group desc-td">
-            <input v-model.trim="new_asset.desc" class="form-control" id="new_desc" placeholder="desc">
+            <input v-model.trim="new_asset.desc" class="form-control" id="new_desc" placeholder="description">
         </div><div class="form-group author-td">
             <input v-model.trim="new_asset.author" class="form-control" id="new_author" placeholder="author">
         </div><div class="form-group category-td">
@@ -54,6 +54,11 @@
 .output h3 {
     cursor: pointer;
 }
+th select {
+    font-weight: lighter;
+    display: block;
+    float: right;
+}
 </style>
 </header>
 
@@ -61,15 +66,15 @@
 <div id="app">
     <table class="table">
         <tr>
-            <th class="name-td">name</th>
-            <th class="desc-td">description</th>
-            <th class="author-td">author:
+            <th class="name-td">名称</th>
+            <th class="desc-td">简介</th>
+            <th class="author-td">作者:
                 <select v-model="author_filter">
                     <option></option>
                     <option v-for="author in authors">{{author}}</option>
                 </select>
             </th>
-            <th class="category-td">category:
+            <th class="category-td">分类:
                 <select v-model="category_filter">
                     <option></option>
                     <option v-for="category in categorys">{{category}}</option>
@@ -113,15 +118,6 @@
 <script src="https://unpkg.com/vue@2.4.2"></script>
 <script>
 'use strict';
-
-var Asset = function({name, url, desc, author, category}) {
-    this.name = name;
-    this.url = url;
-    this.desc = desc;
-    this.author = author;
-    this.category = category;
-};
-
 
 Vue.component('asset-view', {
     template: '#asset-view-template',
@@ -168,13 +164,13 @@ var app = new Vue({
         new_assets: [],
         category_filter: '',
         author_filter: '',
-        new_asset: new Asset({
+        new_asset: {
             name: '',
             url: '',
             desc: '',
             author: '',
             category: '',
-        })
+        }
     },
     computed: {
         all_assets: function() {
@@ -231,16 +227,24 @@ var app = new Vue({
             }
             this.new_assets.push(this.new_asset);
             var last_author = this.new_asset.author;
-            this.new_asset = new Asset({
+            this.new_asset = {
                 name: '',
                 url: '',
                 desc: '',
                 author: last_author,
                 category: '',
-            });
+            };
         },
     }
 });
+
+fetch('user_scripts.json').then(function(response) {
+    return response.text();
+}).then(function(text) {
+    for (var i of JSON.parse(text)) {
+        app.assets.push(i);
+    }
+})
 
 </script>
 </html>
