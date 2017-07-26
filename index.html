@@ -1,12 +1,221 @@
 <html>
 <header>
+
+<title>test</title>
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<script type="text/x-template" id="asset-view-template">
+    <tr :class="{success: is_new_asset}">
+        <td class="name-td"><a :href="asset.url">{{asset.name}}</a></td>
+        <td class="desc-td">{{asset.desc}}</td>
+        <td class="author-td">{{asset.author}}</td>
+        <td class="category-td">{{asset.category}}</td>
+    </tr>
+</script>
+
+<script type="text/x-template" id="new-asset-form-template">
+    <div><div class="form-group name-td">
+            <input v-model="new_asset.name" class="form-control" id="new_name" placeholder="name">
+            <input v-model="new_asset.url" class="form-control" id="new_url" type="url" placeholder="url">
+        </div><div class="form-group desc-td">
+            <input v-model="new_asset.desc" class="form-control" id="new_desc" placeholder="desc">
+        </div><div class="form-group author-td">
+            <input v-model="new_asset.author" class="form-control" id="new_author" placeholder="author">
+        </div><div class="form-group category-td">
+            <input v-model="new_asset.category" class="form-control" id="new_category" placeholder="category">
+        </div>
+    </div>
+</script>
+
+<style>
+.name-td {
+    width: 15%;
+}
+.desc-td {
+    width: 60%;
+}
+.author-td {
+    width: 12%;
+}
+.category-td {
+    width: 13%;
+}
+#new_desc,#new_author,#new_category {
+    width: 90%;
+}
+#new_name,#new_url {
+    width: 45%;
+}
+</style>
 </header>
+
 <body>
-<div id="content"></div>
+<div id="app">
+    <table class="table">
+        <tr>
+            <th class="name-td">name</th>
+            <th class="desc-td">description</th>
+            <th class="author-td">author:
+                <select v-model="author_filter">
+                    <option></option>
+                    <option v-for="author in authors">{{author}}</option>
+                </select>
+            </th>
+            <th class="category-td">category:
+                <select v-model="category_filter">
+                    <option></option>
+                    <option v-for="category in categorys">{{category}}</option>
+                </select>
+            </th>
+        </tr>
+        <tbody>
+            <tr
+            is="asset-view"
+            :asset="asset"
+            v-for="asset in assets"
+            v-if="(!category_filter || asset.category == category_filter) && (!author_filter || asset.author == author_filter)"
+            ></tr>
+
+            <tr
+            is="asset-view"
+            :asset="asset"
+            :is_new_asset="1"
+            v-for="asset in new_assets"
+            v-if="(!category_filter || asset.category == category_filter) && (!author_filter || asset.author == author_filter)"
+            ></tr>
+
+
+            <tr>
+                <td colspan="4">
+                    <form class="form-inline" @keyup.enter="addnew">
+                        <new-asset-form :new_asset="new_asset"></new-asset-form>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    <p v-for="asset in new_assets">{{asset}}</p>
+    <hr>
+    <pre>{{bbcode}}</pre>
+</div>
 </body>
+<script src="https://unpkg.com/vue@2.4.2"></script>
 <script>
-fetch('https://raw.githubusercontent.com/protodonuts/udev-index/master/issue_template.md')
-.then(i => i.text())
-.then(t => document.getElementById('content').innerText = t);
+'use strict';
+
+var Asset = function({name, url, desc, author, category}) {
+    this.name = name;
+    this.url = url;
+    this.desc = desc;
+    this.author = author;
+    this.category = category;
+};
+
+
+Vue.component('asset-view', {
+    template: '#asset-view-template',
+    props: ['asset', 'is_new_asset'],
+});
+
+Vue.component('new-asset-form', {
+    template: '#new-asset-form-template',
+    props: ['new_asset']
+});
+
+
+function getUniqueArray(array) {
+    var set = new Set();
+    for (var i of array) {
+        set.add(i);
+    }
+    var re = [];
+    for (var i of set) {
+        re.push(i);
+    }
+    re.sort();
+    return re;
+}
+function getBbcode(asset) {
+    return '[url=' + asset.url + ']' + asset.name + ': ' + asset.desc + ' by ' + asset.author +
+            '[/url]';
+}
+
+var app = new Vue({
+    el: '#app',
+    data: {
+        assets: [],
+        new_assets: [],
+        category_filter: '',
+        author_filter: '',
+        new_asset: new Asset({
+            name: '',
+            url: '',
+            desc: '',
+            author: '',
+            category: '',
+        })
+    },
+    computed: {
+        all_assets: function() {
+            return this.assets.concat(this.new_assets);
+        },
+        categorys: function() {
+            return getUniqueArray(this.all_assets.map(
+                function(i) {return i.category}
+            ));
+        },
+        authors: function() {
+            return getUniqueArray(this.all_assets.map(
+                function(i) {return i.author;}
+            ));
+        },
+        cate_index: function() {
+            var map = {};
+            for (var c of this.categorys) {
+                map[c] = [];
+            }
+            for (var asset of this.all_assets) {
+                map[asset.category].push(asset);
+            }
+            return map;
+        },
+        bbcode: function() {
+            var result = '';
+            for (var c of this.categorys) {
+                result += '[b]' + c + '[/b]\n';
+                for (var a of this.cate_index[c]) {
+                    result += getBbcode(a);
+                    result += '\n';
+                }
+                result += '\n';
+            }
+            return result;
+        }
+    },
+    methods: {
+        addnew: function() {
+            if (!(
+                this.new_asset.name &&
+                this.new_asset.url &&
+                this.new_asset.desc &&
+                this.new_asset.author &&
+                this.new_asset.category
+            )) {
+                return;
+            }
+            this.new_assets.push(this.new_asset);
+            this.new_asset = new Asset({
+                name: '',
+                url: '',
+                desc: '',
+                author: '',
+                category: '',
+            });
+        },
+    }
+});
+
 </script>
 </html>
