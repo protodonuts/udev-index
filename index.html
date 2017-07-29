@@ -33,13 +33,13 @@
     width: 15%;
 }
 .desc-td {
-    width: 60%;
+    width: 55%;
 }
 .author-td {
     width: 12%;
 }
 .category-td {
-    width: 13%;
+    width: 18%;
 }
 #new_desc,#new_author,#new_category {
     width: 90%;
@@ -241,10 +241,14 @@ var app = new Vue({
 fetch('user_scripts.json').then(function(response) {
     return response.text();
 }).then(function(text) {
-    for (var i of JSON.parse(text)) {
+    var assets =  JSON.parse(text);
+    assets.sort(function(a, b) {
+        return a.category.localeCompare(b.category);
+    });
+    for (var i of assets) {
         app.assets.push(i);
     }
-})
+});
 
 </script>
 </html>

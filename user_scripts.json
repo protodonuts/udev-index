@@ -3,28 +3,63 @@
     "name": "Show Bangumi ID",
     "url": "https://greasyfork.org/zh-CN/scripts/1920-show-bangumi-id",
     "desc": "在昵称旁显示用户名",
-    "author": "阿叉",
-    "category": "用户社交"
+    "author": "s23sui",
+    "category": "用户，社交，讨论"
   },
   {
     "name": "bgmnote",
     "url": "https://greasyfork.org/zh-CN/scripts/4428-bgmnote",
     "desc": "简易备注",
-    "author": "阿叉",
-    "category": "用户社交"
+    "author": "s23sui",
+    "category": "用户，社交，讨论"
   },
   {
     "name": "Silent B",
     "url": "https://greasyfork.org/zh-CN/scripts/10559-silent-b",
     "desc": "隐藏指定的超展开列表项目，等等",
-    "author": "阿叉",
-    "category": "超展开"
+    "author": "s23sui",
+    "category": "用户，社交，讨论"
   },
   {
     "name": "BNM",
     "url": "https://greasyfork.org/zh-CN/scripts/1928-bnm",
     "desc": "屏蔽用户",
-    "author": "阿叉",
-    "category": "用户社交"
+    "author": "s23sui",
+    "category": "用户，社交，讨论"
+  },
+  {
+    "name": "回帖增强 BRE",
+    "url": "https://github.com/bangumi/scripts/blob/master/binota/README.md#回帖增强-bre",
+    "desc": "回帖增强",
+    "author": "binota",
+    "category": "用户，社交，讨论"
+  },
+  {
+    "name": "讨论增强",
+    "url": "https://github.com/bangumi/scripts/tree/master/upsuper#讨论增强",
+    "desc": "标出上次浏览一个帖子之后发表的新回复； 帖子内指向其他帖子的链接，鼠标悬浮时显示对应帖子的标题。",
+    "author": "upsuper",
+    "category": "用户，社交，讨论"
+  },
+  {
+    "name": "小组坟贴标记",
+    "url": "https://github.com/bangumi/scripts/tree/master/upsuper#小组坟贴标记",
+    "desc": "在帖子及每个回帖旁边显示一条粉红色的竖线，竖线的颜色越深表示帖子的发表时间距离现在越久远",
+    "author": "upsuper",
+    "category": "用户，社交，讨论"
+  },
+  {
+    "name": "侧栏 Dollars",
+    "url": "https://github.com/bangumi/scripts/tree/master/upsuper#侧栏-dollars",
+    "desc": "侧栏 Dollars",
+    "author": "upsuper",
+    "category": "用户，社交，讨论"
+  },
+  {
+    "name": "用户头像信息增强",
+    "url": "http://bgm.tv/group/topic/342298",
+    "desc": "快速查看用户最近状态--成为一名斯托卡",
+    "author": "fifth",
+    "category": "用户，社交，讨论"
   }
 ]
