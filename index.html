@@ -156,8 +156,7 @@ function getUniqueArray(array) {
     return re;
 }
 function getBbcode(asset) {
-    return '[url=' + asset.url + ']' + asset.name + ': ' + asset.desc + ' by ' + asset.author +
-            '[/url]';
+    return '[url=' + asset.url + ']' + asset.name + '[/url]' + ' by [url=https://bgm.tv/user/' + asset.author + ']' + asset.author + '[/url]\n' + asset.desc;
 }
 
 var app = new Vue({
@@ -212,7 +211,7 @@ var app = new Vue({
                     result += getBbcode(a);
                     result += '\n';
                 }
-                result += '\n';
+                result += '\n\n';
             }
             return result;
         }
