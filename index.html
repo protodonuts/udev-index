@@ -109,7 +109,10 @@ th select {
     </table>
     <div class="output">
         <hr>
-        <code-output :title="'JSON'" :content="new_assets"></code-output>
+        <code-output id="newjson" :title="'JSON'" :content="new_assets">
+            <button @click="sendissue">Send Issue</button>
+        </code-output>
+        
         <hr>
         <code-output :title="'BBCode'" :content="bbcode"></code-output>
     </div>
@@ -130,7 +133,7 @@ Vue.component('new-asset-form', {
 });
 
 Vue.component('code-output', {
-    template: '<div><h3 @click="toggle">{{title}}</h3><pre v-if="display">{{content}}</pre></div>',
+    template: '<div><h3 @click="toggle">{{title}}</h3><pre v-if="display">{{content}}</pre><slot v-if="display"></slot></div>',
     props: ['title', 'content', ],
     data: function() {
         return {display: false};
@@ -235,6 +238,11 @@ var app = new Vue({
                 category: '',
             };
         },
+        sendissue: function() {
+            var data = '```json\n\n' + document.querySelector('#newjson pre').innerHTML + '\n\n```';
+            var issue_body = encodeURI(data);
+            window.open('https://github.com/protodonuts/udev-index/issues/new?body=' + issue_body);
+        }
     }
 });
 
