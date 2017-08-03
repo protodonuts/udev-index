@@ -7,9 +7,9 @@
 
 <script type="text/x-template" id="asset-view-template">
     <tr :class="{success: is_new_asset}">
-        <td class="name-td"><a :href="asset.url">{{asset.name}}</a></td>
+        <td class="name-td"><a target="_blank" :href="asset.url">{{asset.name}}</a></td>
         <td class="desc-td">{{asset.desc}}</td>
-        <td class="author-td">{{asset.author}}</td>
+        <td class="author-td"><a target="_blank" :href="'https://bgm.tv/user/' + asset.author">{{asset.author}}</a></td>
         <td class="category-td">{{asset.category}}</td>
     </tr>
 </script>
@@ -148,10 +148,7 @@ function getUniqueArray(array) {
     for (var i of array) {
         set.add(i);
     }
-    var re = [];
-    for (var i of set) {
-        re.push(i);
-    }
+    var re = Array.from(set);
     re.sort();
     return re;
 }
