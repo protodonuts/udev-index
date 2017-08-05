@@ -65,7 +65,7 @@
   {
     "name": "评论统计",
     "url": "https://github.com/bangumi/scripts/tree/master/yonjar#bangumi评论统计",
-    "desc": "在标题右边显示该主题下的评论情况:  有多少用户发表过评论, 自己是否评论过, 鼠标移到用户名上查看评论次数",
+    "desc": "在标题右边显示该主题评论情况: 有多少用户发表过评论, 自己是否评论过, 鼠标移到用户名上查看评论次数",
     "author": "yonjar",
     "category": "用户，社交，讨论"
   },
@@ -106,12 +106,12 @@
   {
     "name": "Bgmlist Integrator",
     "url": "http://bgm.tv/group/topic/341136",
-    "desc": "使用 bgmlist.com 的放送数据来替换首页的每日放送; 每日放送只保留在看的条目; 显示一周七天的在看动画时间表",
+    "desc": "用 bgmlist.com 的放送数据替换首页的每日放送; 每日放送只保留在看的条目; 显示七天动画时间表",
     "author": "prevails",
     "category": "放送列表 & 放送资源"
   },
   {
-    "name": "Green-Block-Improve",
+    "name": "格子放送状态改进",
     "url": "http://bgm.tv/group/topic/341661",
     "desc": "将绿色格子时间展到上午 6 时／昨日播放的章节显示橘色",
     "author": "binota",
@@ -161,14 +161,14 @@
   {
     "name": "条目页面左下角信息优化",
     "url": "http://bgm.tv/group/topic/342264",
-    "desc": "允许用户切换所有用户的状态信息/仅好友的状态信息（包括好友的头像，名字，观看时间，打分，评论，如果有的话）",
+    "desc": "包括头像，名字，观看时间，打分，评论; 可切换所有用户/仅好友",
     "author": "fifth",
     "category": "条目收藏，打分和标签"
   },
   {
     "name": "查找他人收藏的特定条目",
     "url": "https://github.com/bangumi/scripts/tree/master/prevails#查找他人收藏的特定条目",
-    "desc": "在他人的收藏中找到你想查看的特定条目，了解 ta 对这部作品的评价如何。特别是当你感兴趣的那个人收藏的条目很多的时候",
+    "desc": "在他人的收藏中找到你想查看的特定条目，了解 ta 对这部作品的评价如何",
     "author": "prevails",
     "category": "条目收藏，打分和标签"
   },
@@ -307,7 +307,7 @@
   {
     "name": "防剧透",
     "url": "http://bgm.tv/group/topic/311322",
-    "desc": "会屏蔽章节讨论里的部分留言, 只显示 浏览该章节讨论页的用户的 首个未标记为「看过」的章节的 播出时间之前发布的评论",
+    "desc": "章节讨论只显示 浏览该章节讨论页的用户的 首个未标记为「看过」的章节的 播出时间之前发布的评论",
     "author": "binota",
     "category": "防剧透"
   },
@@ -349,7 +349,7 @@
   {
     "name": "Bangumi Tookit",
     "url": "https://greasyfork.org/zh-CN/scripts/10786-bangumi-tookit",
-    "desc": "标题中日转换; 搜索链接附加; 播出中或已播出的条目优先显示; \"播出中\"绿格偏移; 防止ep评论区的动画溢出",
+    "desc": "标题中日转换; 搜索链接附加; 播出中或已播出的条目优先显示; 绿格偏移; 防止ep评论区的动画溢出",
     "author": "-",
     "category": "辅助功能"
   }
