@@ -28,7 +28,7 @@
     "category": "用户，社交，讨论"
   },
   {
-    "name": "回帖增强 BRE",
+    "name": "回帖增强",
     "url": "https://github.com/bangumi/scripts/blob/master/binota/README.md#回帖增强-bre",
     "desc": "回帖增强",
     "author": "binota",
@@ -97,7 +97,7 @@
     "category": "放送列表 & 放送资源"
   },
   {
-    "name": "PersonalCalendar",
+    "name": "个性化的每日放送",
     "url": "http://bgm.tv/group/topic/340945",
     "desc": "基于目录的个性化的每日放送",
     "author": "derrick",
@@ -200,37 +200,157 @@
     "category": "番組 WIKI 工具"
   },
   {
-    "name": "Rename-Related-Subjects",
+    "name": "关联条目批量修改",
     "url": "http://bgm.tv/group/topic/311647",
     "desc": "关联条目批量修改",
     "author": "binota",
     "category": "番組 WIKI 工具"
   },
   {
-    "name": "Relationship-Person-Synchronize",
+    "name": "关联人物同步",
     "url": "http://bgm.tv/group/topic/340812",
     "desc": "将已关联的人物同步上 Infobox",
     "author": "binota",
     "category": "番組 WIKI 工具"
   },{
-    "name": "History-Diff",
+    "name": "条目历史对比",
     "url": "http://bgm.tv/group/topic/311622",
-    "desc": "条目历史对比",
+    "desc": "查看条目信息的历史对比",
     "author": "binota",
     "category": "番組 WIKI 工具"
   },
   {
-    "name": "Drag2Sort-Relationship",
+    "name": "拖动排序条目关联",
     "url": "https://github.com/bangumi/scripts/tree/master/binota#拖动排序条目关联-bdsr",
     "desc": "拖动排序条目关联",
     "author": "binota",
     "category": "番組 WIKI 工具"
   },
   {
-    "name": "eps-editor",
+    "name": "章节列表编辑",
     "url": "https://github.com/bangumi/scripts/tree/master/mono#bgm-eps-editor-章节列表编辑器",
-    "desc": "章节列表编辑: 表格编辑器中的数据和原本的文本编辑器联动",
+    "desc": "表格编辑器中的数据和原本的文本编辑器联动",
     "author": "mono",
     "category": "番組 WIKI 工具"
+  },
+  {
+    "name": "首页条目名中文化",
+    "url": "http://bgm.tv/group/topic/20071",
+    "desc": "将 Bangumi 首页上的条目日文名翻译为中文名",
+    "author": "upsuper",
+    "category": "辅助功能"
+  },
+  {
+    "name": "突破首页格子50上限",
+    "url": "https://bgm.tv/group/topic/317991",
+    "desc": "突破首页格子50上限",
+    "author": "chaucerling",
+    "category": "辅助功能"
+  },
+  {
+    "name": "自动替换域名",
+    "url": "https://github.com/bangumi/scripts/tree/master/binota#自动替换域名-bldf",
+    "desc": "自动替换页面上所有的链接为你目前使用的 Protocal 与 Domain",
+    "author": "binota",
+    "category": "辅助功能"
+  },
+  {
+    "name": "条目ISBN日本亚马逊链接",
+    "url": "https://github.com/bangumi/scripts/tree/master/binota#条目isbn日本亚马逊链接-bial",
+    "desc": "在 Infobox 内的 ISBN 后添加日本亚马逊链接（/dp/{ISBN}）",
+    "author": "binota",
+    "category": "辅助功能"
+  },
+  {
+    "name": "人物条目 Twitter 链接",
+    "url": "https://github.com/bangumi/scripts/tree/master/binota#人物条目-twitter-链接",
+    "desc": "人物条目内若 Infobox 有 Twitter 栏位，会替换为 Twitter 链接",
+    "author": "binota",
+    "category": "辅助功能"
+  },
+  
+  {
+    "name": "章节页显示中文名称",
+    "url": "https://github.com/bangumi/scripts/tree/master/binota#章节页显示中文名称",
+    "desc": "在章节页内显示章节的中文名称（通过 api.bgm.tv 获取）",
+    "author": "binota",
+    "category": "辅助功能"
+  },
+  {
+    "name": "人物名日文汉字读音",
+    "url": "http://bgm.tv/group/topic/341271",
+    "desc": "把读音标到人名的汉字上",
+    "author": "prevails",
+    "category": "辅助功能"
+  },
+  {
+    "name": "域名重定向",
+    "url": "https://github.com/bangumi/scripts/tree/master/a_little#域名重定向",
+    "desc": "重定向番组计划(Bangumi)域名为个人常用域名，方便在外部访问跳转",
+    "author": "a_little",
+    "category": "辅助功能"
+  },
+  {
+    "name": "禁用超展开话题双击折叠",
+    "url": "http://bgm.tv/group/topic/341510#post_1186687",
+    "desc": "禁用超展开话题双击折叠",
+    "author": "prevails",
+    "category": "辅助功能"
+  },
+  {
+    "name": "好友动态&全站动态切换",
+    "url": "https://github.com/bangumi/scripts/tree/master/yonjar#好友动态全站动态切换",
+    "desc": "好友动态&全站动态 切换 !全站动态只有一页",
+    "author": "yonjar",
+    "category": "辅助功能"
+  },
+  {
+    "name": "防剧透",
+    "url": "http://bgm.tv/group/topic/311322",
+    "desc": "会屏蔽章节讨论里的部分留言, 只显示 浏览该章节讨论页的用户的 首个未标记为「看过」的章节的 播出时间之前发布的评论",
+    "author": "binota",
+    "category": "防剧透"
+  },
+  {
+    "name": "折叠章节讨论的\"剧透\"",
+    "url": "http://bgm.tv/subject/topic/8594",
+    "desc": "在章节讨论的每层楼内部搜索\"剧透\"字样, 如果找到, 就折叠整层楼",
+    "author": "prevails",
+    "category": "防剧透"
+  },
+  {
+    "name": "防角色 RIP 剧透",
+    "url": "http://bgm.tv/group/topic/341510#post_1186688",
+    "desc": "防角色 RIP 剧透",
+    "author": "prevails",
+    "category": "防剧透"
+  },
+  {
+    "name": "目录管理增强",
+    "url": "http://bgm.tv/group/topic/22038",
+    "desc": "支持批量根据编号排序",
+    "author": "upsuper",
+    "category": "目录"
+  },
+  {
+    "name": "目录批量编辑",
+    "url": "https://github.com/bangumi/scripts/tree/master/binota#目录批量编辑-bibe",
+    "desc": "支持批量排序、编辑注解、拖动排序",
+    "author": "binota",
+    "category": "目录"
+  },
+  {
+    "name": "用户页统计图",
+    "url": "https://github.com/bangumi/scripts/tree/master/binota#用户页统计图-bhc",
+    "desc": "仿 GitHub 用户页，在 Bangumi 的用户页上绘制自己的 Wiki 编辑记录与时空管理局统计图",
+    "author": "binota",
+    "category": "个人页"
+  },
+  {
+    "name": "Bangumi Tookit",
+    "url": "https://greasyfork.org/zh-CN/scripts/10786-bangumi-tookit",
+    "desc": "标题中日转换; 搜索链接附加; 播出中或已播出的条目优先显示; \"播出中\"绿格偏移; 防止ep评论区的动画溢出",
+    "author": "-",
+    "category": "辅助功能"
   }
 ]
