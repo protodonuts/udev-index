@@ -1,33 +1,7 @@
 <html>
 <header>
-
-<title>test</title>
-
+<title>udev script index</title>
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-<script type="text/x-template" id="asset-view-template">
-    <tr :class="{success: is_new_asset}">
-        <td class="name-td"><a target="_blank" :href="asset.url">{{asset.name}}</a></td>
-        <td class="desc-td">{{asset.desc}}</td>
-        <td class="author-td"><a target="_blank" :href="'https://bgm.tv/user/' + asset.author">{{asset.author}}</a></td>
-        <td class="category-td">{{asset.category}}</td>
-    </tr>
-</script>
-
-<script type="text/x-template" id="new-asset-form-template">
-    <div><div class="form-group name-td">
-            <input v-model.trim="new_asset.name" class="form-control" id="new_name" placeholder="name">
-            <input v-model.trim="new_asset.url" class="form-control" id="new_url" type="url" placeholder="url">
-        </div><div class="form-group desc-td">
-            <input v-model.trim="new_asset.desc" class="form-control" id="new_desc" placeholder="description">
-        </div><div class="form-group author-td">
-            <input v-model.trim="new_asset.author" class="form-control" id="new_author" placeholder="author">
-        </div><div class="form-group category-td">
-            <input v-model.trim="new_asset.category" class="form-control" id="new_category" placeholder="category">
-        </div>
-    </div>
-</script>
-
 <style>
 .name-td {
     width: 15%;
@@ -61,7 +35,6 @@ th select {
 }
 </style>
 </header>
-
 <body>
 <div id="app">
     <table class="table">
@@ -117,7 +90,32 @@ th select {
         <code-output :title="'BBCode'" :content="bbcode"></code-output>
     </div>
 </div>
+<script>document.write('<div style="height:' + (window.innerHeight * .9) + 'px;">&nbsp;</div>');</script>
 </body>
+
+<script type="text/x-template" id="asset-view-template">
+    <tr :class="{success: is_new_asset}">
+        <td class="name-td"><a target="_blank" :href="asset.url">{{asset.name}}</a></td>
+        <td class="desc-td">{{asset.desc}}</td>
+        <td class="author-td"><a target="_blank" :href="'https://bgm.tv/user/' + asset.author">{{asset.author}}</a></td>
+        <td class="category-td">{{asset.category}}</td>
+    </tr>
+</script>
+
+<script type="text/x-template" id="new-asset-form-template">
+    <div><div class="form-group name-td">
+            <input v-model.trim="new_asset.name" class="form-control" id="new_name" placeholder="名称">
+            <input v-model.trim="new_asset.url" class="form-control" id="new_url" type="url" placeholder="URL">
+        </div><div class="form-group desc-td">
+            <input v-model.trim="new_asset.desc" class="form-control" id="new_desc" placeholder="一句话介绍">
+        </div><div class="form-group author-td">
+            <input v-model.trim="new_asset.author" class="form-control" id="new_author" placeholder="作者 ID">
+        </div><div class="form-group category-td">
+            <input v-model.trim="new_asset.category" class="form-control" id="new_category" placeholder="分类">
+        </div>
+    </div>
+</script>
+
 <script src="https://unpkg.com/vue@2.4.2"></script>
 <script>
 'use strict';
@@ -158,6 +156,32 @@ function getBbcode(asset) {
             '[color=#ccc][size=11]' + asset.desc + '[/size][/color]';
 }
 
+var GRAND_ORDER= [
+    '条目收藏，打分和标签',
+    '用户，社交，讨论',
+    '放送列表 & 放送资源',
+    '番組 WIKI 工具',
+    '目录',
+];
+
+function categoryCompare(a, b) {
+    var ia = GRAND_ORDER.indexOf(a);
+    var ib = GRAND_ORDER.indexOf(b);
+    if (ia === -1) {
+        if (ib === -1) {
+            return a.localeCompare(b);
+        } else {
+            return 1;
+        }
+    } else {
+        if (ib === -1) {
+            return -1;
+        } else {
+            return ia - ib;
+        }
+    }
+}
+
 var app = new Vue({
     el: '#app',
     data: {
@@ -178,9 +202,11 @@ var app = new Vue({
             return this.assets.concat(this.new_assets);
         },
         categorys: function() {
-            return getUniqueArray(this.all_assets.map(
+            var cs = getUniqueArray(this.all_assets.map(
                 function(i) {return i.category}
             ));
+            cs.sort(categoryCompare);
+            return cs;
         },
         authors: function() {
             return getUniqueArray(this.all_assets.map(
@@ -210,7 +236,7 @@ var app = new Vue({
                     result += getBbcode(a);
                     result += '\n';
                 }
-                result += '\n\n';
+                result += '\n';
             }
             return result;
         }
@@ -247,13 +273,7 @@ var app = new Vue({
 fetch('user_scripts.json').then(function(response) {
     return response.text();
 }).then(function(text) {
-    var assets =  JSON.parse(text);
-    assets.sort(function(a, b) {
-        return a.category.localeCompare(b.category);
-    });
-    for (var i of assets) {
-        app.assets.push(i);
-    }
+    app.assets = JSON.parse(text);
 });
 
 </script>
