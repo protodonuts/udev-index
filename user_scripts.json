@@ -347,10 +347,10 @@
     "category": "个人页"
   },
   {
-    "name": "Bangumi Tookit",
-    "url": "https://greasyfork.org/zh-CN/scripts/10786-bangumi-tookit",
-    "desc": "标题中日转换; 搜索链接附加; 播出中或已播出的条目优先显示; 绿格偏移; 防止ep评论区的动画溢出",
-    "author": "-",
+    "name": "系列单行本关联显示",
+    "url": "https://github.com/bangumi/scripts/tree/master/everpcpc#单行本条目页面添加所有单行本信息",
+    "desc": "单行本条目页面添加所有单行本信息",
+    "author": "everpcpc",
     "category": "辅助功能"
   }
 ]
