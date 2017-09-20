@@ -352,5 +352,12 @@
     "desc": "单行本条目页面添加所有单行本信息",
     "author": "everpcpc",
     "category": "辅助功能"
+  },
+  {
+    "name": "Tookit",
+    "url": "https://bgm.tv/group/topic/311131",
+    "desc": "标题中日转换; 搜索链接附加; 播出中或已播出的条目优先显示; \"播出中\"绿格偏移; etc.",
+    "author": "zheung14",
+    "category": "辅助功能"
   }
 ]
