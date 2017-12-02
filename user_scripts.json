@@ -366,5 +366,19 @@
     "desc": "在讨论中高亮楼主昵称",
     "author": "fireattack",
     "category": "用户，社交，讨论"
+  },
+  {
+    "name": "目录新关联条目候选匹配",
+    "url": "https://bgm.tv/group/topic/344367",
+    "desc": "添加新关联时输入条目名称，脚本会爬取搜索界面并给出浮动候选框，通过上下键或鼠标点击选择得到条目的 ID",
+    "author": "322380",
+    "category": "目录"
+  },
+  {
+    "name": "话题收藏",
+    "url": "https://bgm.tv/group/topic/344381",
+    "desc": "收藏小组的话题、用户的日志、条目的讨论",
+    "author": "yonjar",
+    "category": "用户，社交，讨论"
   }
 ]
