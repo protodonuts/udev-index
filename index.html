@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <header>
 <title>udev script index</title>
@@ -42,13 +43,13 @@ th select {
             <th class="name-td">名称</th>
             <th class="desc-td">简介</th>
             <th class="author-td">作者:
-                <select v-model="author_filter">
+                <select v-model="authorFilter">
                     <option></option>
                     <option v-for="author in authors">{{author}}</option>
                 </select>
             </th>
             <th class="category-td">分类:
-                <select v-model="category_filter">
+                <select v-model="categoryFilter">
                     <option></option>
                     <option v-for="category in categorys">{{category}}</option>
                 </select>
@@ -59,22 +60,22 @@ th select {
             is="asset-view"
             :asset="asset"
             v-for="asset in assets"
-            v-if="(!category_filter || asset.category == category_filter) && (!author_filter || asset.author == author_filter)"
+            v-if="(!categoryFilter || asset.category == categoryFilter) && (!authorFilter || asset.author == authorFilter)"
             ></tr>
 
             <tr
             is="asset-view"
             :asset="asset"
-            :is_new_asset="1"
-            v-for="asset in new_assets"
-            v-if="(!category_filter || asset.category == category_filter) && (!author_filter || asset.author == author_filter)"
+            :is-new-asset="1"
+            v-for="asset in newAssets"
+            v-if="(!categoryFilter || asset.category == categoryFilter) && (!authorFilter || asset.author == authorFilter)"
             ></tr>
 
 
             <tr>
                 <td colspan="4">
-                    <form class="form-inline" @keyup.enter="addnew">
-                        <new-asset-form :new_asset="new_asset"></new-asset-form>
+                    <form class="form-inline" @keyup.enter="addNew">
+                        <new-asset-form :new-asset="newAsset"></new-asset-form>
                     </form>
                 </td>
             </tr>
@@ -82,8 +83,8 @@ th select {
     </table>
     <div class="output">
         <hr>
-        <code-output id="newjson" :title="'JSON'" :content="new_assets">
-            <button @click="sendissue">Send Issue</button>
+        <code-output id="newjson" :title="'JSON'" :content="newAssets">
+            <button @click="sendIssue">Send Issue</button>
         </code-output>
         
         <hr>
@@ -94,7 +95,7 @@ th select {
 </body>
 
 <script type="text/x-template" id="asset-view-template">
-    <tr :class="{success: is_new_asset}">
+    <tr :class="{success: isNewAsset}">
         <td class="name-td"><a target="_blank" :href="asset.url">{{asset.name}}</a></td>
         <td class="desc-td">{{asset.desc}}</td>
         <td class="author-td"><a target="_blank" :href="'https://bgm.tv/user/' + asset.author">{{asset.author}}</a></td>
@@ -104,14 +105,14 @@ th select {
 
 <script type="text/x-template" id="new-asset-form-template">
     <div><div class="form-group name-td">
-            <input v-model.trim="new_asset.name" class="form-control" id="new_name" placeholder="名称">
-            <input v-model.trim="new_asset.url" class="form-control" id="new_url" type="url" placeholder="URL">
+            <input v-model.trim="newAsset.name" class="form-control" id="new_name" placeholder="名称">
+            <input v-model.trim="newAsset.url" class="form-control" id="new_url" type="url" placeholder="URL">
         </div><div class="form-group desc-td">
-            <input v-model.trim="new_asset.desc" class="form-control" id="new_desc" placeholder="一句话介绍">
+            <input v-model.trim="newAsset.desc" class="form-control" id="new_desc" placeholder="一句话介绍">
         </div><div class="form-group author-td">
-            <input v-model.trim="new_asset.author" class="form-control" id="new_author" placeholder="作者 ID">
+            <input v-model.trim="newAsset.author" class="form-control" id="new_author" placeholder="作者 ID">
         </div><div class="form-group category-td">
-            <input v-model.trim="new_asset.category" class="form-control" id="new_category" placeholder="分类">
+            <input v-model.trim="newAsset.category" class="form-control" id="new_category" placeholder="分类">
         </div>
     </div>
 </script>
@@ -122,22 +123,22 @@ th select {
 
 Vue.component('asset-view', {
     template: '#asset-view-template',
-    props: ['asset', 'is_new_asset'],
+    props: ['asset', 'isNewAsset'],
 });
 
 Vue.component('new-asset-form', {
     template: '#new-asset-form-template',
-    props: ['new_asset']
+    props: ['newAsset']
 });
 
 Vue.component('code-output', {
     template: '<div><h3 @click="toggle">{{title}}</h3><pre v-if="display">{{content}}</pre><slot v-if="display"></slot></div>',
-    props: ['title', 'content', ],
-    data: function() {
+    props: ['title', 'content'],
+    data: function () {
         return {display: false};
     },
     methods: {
-        toggle: function() {this.display = !this.display;},
+        toggle: function () {this.display = !this.display;},
     }
 })
 
@@ -151,9 +152,9 @@ function getUniqueArray(array) {
     return re;
 }
 function getBbcode(asset) {
-    return '[url=' + asset.url + ']' + asset.name + '[/url] ' +
+    return '[url=' + asset.url + '][b]' + asset.name + '[/b][/url] ' +
             'by [url=https://bgm.tv/user/' + asset.author + ']' + asset.author + '[/url] ' +
-            '[color=#ccc][size=11]' + asset.desc + '[/size][/color]';
+            '[color=#8c8c8c][size=11]' + asset.desc + '[/size][/color]';
 }
 
 var GRAND_ORDER= [
@@ -164,7 +165,7 @@ var GRAND_ORDER= [
     '目录',
 ];
 
-function categoryCompare(a, b) {
+function categoryCompare(a, b) { // with GRAND_ORDER first, string localeCompare next
     var ia = GRAND_ORDER.indexOf(a);
     var ib = GRAND_ORDER.indexOf(b);
     if (ia === -1) {
@@ -186,10 +187,10 @@ var app = new Vue({
     el: '#app',
     data: {
         assets: [],
-        new_assets: [],
-        category_filter: '',
-        author_filter: '',
-        new_asset: {
+        newAssets: [],
+        categoryFilter: '',
+        authorFilter: '',
+        newAsset: {
             name: '',
             url: '',
             desc: '',
@@ -198,27 +199,27 @@ var app = new Vue({
         }
     },
     computed: {
-        all_assets: function() {
-            return this.assets.concat(this.new_assets);
+        allAssets: function () {
+            return this.assets.concat(this.newAssets);
         },
-        categorys: function() {
-            var cs = getUniqueArray(this.all_assets.map(
+        categorys: function () {
+            var cs = getUniqueArray(this.allAssets.map(
                 function(i) {return i.category}
             ));
             cs.sort(categoryCompare);
             return cs;
         },
-        authors: function() {
-            return getUniqueArray(this.all_assets.map(
-                function(i) {return i.author;}
+        authors: function () {
+            return getUniqueArray(this.allAssets.map(
+                function (i) {return i.author;}
             ));
         },
-        cate_index: function() {
+        categoryIndex: function () {
             var map = {};
             for (var c of this.categorys) {
                 map[c] = [];
             }
-            for (var asset of this.all_assets) {
+            for (var asset of this.allAssets) {
                 map[asset.category].push(asset);
             }
             for (var c of this.categorys) {
@@ -228,11 +229,11 @@ var app = new Vue({
             }
             return map;
         },
-        bbcode: function() {
+        bbcode: function () {
             var result = '';
             for (var c of this.categorys) {
-                result += '[b]' + c + '[/b]\n';
-                for (var a of this.cate_index[c]) {
+                result += '[size=16][b]' + c + '[/b][/size]\n';
+                for (var a of this.categoryIndex[c]) {
                     result += getBbcode(a);
                     result += '\n';
                 }
@@ -242,27 +243,27 @@ var app = new Vue({
         }
     },
     methods: {
-        addnew: function() {
+        addNew: function () {
             if (!(
-                this.new_asset.name &&
-                this.new_asset.url &&
-                this.new_asset.desc &&
-                this.new_asset.author &&
-                this.new_asset.category
+                this.newAsset.name &&
+                this.newAsset.url &&
+                this.newAsset.desc &&
+                this.newAsset.author &&
+                this.newAsset.category
             )) {
                 return;
             }
-            this.new_assets.push(this.new_asset);
-            var last_author = this.new_asset.author;
-            this.new_asset = {
+            this.newAssets.push(this.newAsset);
+            var lastAuthor = this.newAsset.author;
+            this.newAsset = {
                 name: '',
                 url: '',
                 desc: '',
-                author: last_author,
+                author: lastAuthor,
                 category: '',
             };
         },
-        sendissue: function() {
+        sendIssue: function () {
             var data = '```json\n\n' + document.querySelector('#newjson pre').innerHTML + '\n\n```';
             var issue_body = encodeURI(data);
             window.open('https://github.com/protodonuts/udev-index/issues/new?body=' + issue_body);
@@ -270,10 +271,10 @@ var app = new Vue({
     }
 });
 
-fetch('user_scripts.json').then(function(response) {
-    return response.text();
-}).then(function(text) {
-    app.assets = JSON.parse(text);
+fetch('user_scripts.json').then(function (response) {
+    return response.json();
+}).then(function (json) {
+    app.assets = json;
 });
 
 </script>
