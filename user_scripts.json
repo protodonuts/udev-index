@@ -194,7 +194,7 @@
   },
   {
     "name": "图片模糊处理",
-    "url": "https://bgm.tv/group/topic/343349",
+    "url": "http://bgm.tv/group/topic/343349",
     "desc": "上传条目图片以及创建人物条目的时候增加模糊处理的功能",
     "author": "a_little",
     "category": "番組 WIKI 工具"
@@ -242,7 +242,7 @@
   },
   {
     "name": "突破首页格子50上限",
-    "url": "https://bgm.tv/group/topic/317991",
+    "url": "http://bgm.tv/group/topic/317991",
     "desc": "突破首页格子50上限",
     "author": "chaucerling",
     "category": "辅助功能"
@@ -355,30 +355,37 @@
   },
   {
     "name": "Tookit",
-    "url": "https://bgm.tv/group/topic/311131",
+    "url": "http://bgm.tv/group/topic/311131",
     "desc": "标题中日转换; 搜索链接附加; 播出中或已播出的条目优先显示; \"播出中\"绿格偏移; etc.",
     "author": "zheung14",
     "category": "辅助功能"
   },
   {
     "name": "高亮楼主",
-    "url": "https://bgm.tv/group/topic/343864",
+    "url": "http://bgm.tv/group/topic/343864",
     "desc": "在讨论中高亮楼主昵称",
     "author": "fireattack",
     "category": "用户，社交，讨论"
   },
   {
     "name": "目录新关联条目候选匹配",
-    "url": "https://bgm.tv/group/topic/344367",
+    "url": "http://bgm.tv/group/topic/344367",
     "desc": "添加新关联时输入条目名称，脚本会爬取搜索界面并给出浮动候选框",
     "author": "322380",
     "category": "目录"
   },
   {
     "name": "话题收藏",
-    "url": "https://bgm.tv/group/topic/344381",
+    "url": "http://bgm.tv/group/topic/344381",
     "desc": "收藏小组的话题、用户的日志、条目的讨论",
     "author": "yonjar",
+    "category": "用户，社交，讨论"
+  },
+  {
+    "name": "好友统计",
+    "url": "http://bgm.tv/group/topic/344467",
+    "desc": "统计好友活跃度及共同爱好等相关信息",
+    "author": "liaune",
     "category": "用户，社交，讨论"
   }
 ]
